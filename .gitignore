@@ -1,2 +1,3 @@
 target/
-project/plugins/
+project/plugins/project/
+src_managed/
