@@ -14,7 +14,7 @@ class SpdeProject(info: ProjectInfo) extends ParentProject(info)
   val license = path("license.txt")
   class SpdeModule(info: ProjectInfo) extends DefaultProject(info) {
     override def mainResources = super.mainResources +++ license
-    override def managedStyle = ManagedStyle.Maven
-    lazy val publishTo = Resolver.file("Databinder Repository", new java.io.File("/var/dbwww/repo"))
   }
+  override def managedStyle = ManagedStyle.Maven
+  lazy val publishTo = Resolver.file("Databinder Repository Path", new java.io.File("/var/dbwww/repo"))
 }
