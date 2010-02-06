@@ -68,23 +68,8 @@ trait Timeout {
   }
 }
 
-trait Futures {
-  import java.util.concurrent.{ThreadPoolExecutor,LinkedBlockingQueue,TimeUnit,Callable}
-  def futuresExecutor = new ThreadPoolExecutor(8, 64, 1, TimeUnit.SECONDS, new LinkedBlockingQueue[Runnable])
-  private lazy val executor = futuresExecutor
-  def future[T](f: => T) = new SpdeFuture(f)
-  /** Wrap java.util.concurrent.Future to resemble scala.actors.Future */
-  class SpdeFuture[T](f: => T) extends Function0[T] {
-    val delegate = executor.submit(new Callable[T]{
-      def call = f
-    })
-    def isSet = delegate.isDone
-    def apply() = delegate.get()
-  }
-  /** Structural type coinciding with scala.actors.Future */
-  type Future[T] = Function0[T] {
-    def isSet: Boolean
-  }
-  /** @return values of futures that have completed their processing */
-  def available[T](fs: Iterable[Future[T]]) = fs filter { _.isSet } map { _() } toList
+trait Futures extends dispatch.futures.AvailableFutures {
+  /** Override to use any Futures implementation */
+  def spde_future: dispatch.futures.Futures = dispatch.futures.DefaultFuture
+  def future[T](result: => T) = spde_future.future(result)
 }
