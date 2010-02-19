@@ -2,7 +2,7 @@ import sbt._
 
 import spde._
 
-class SpdeProject(info: ProjectInfo) extends ParentProject(info)
+class SpdeProject(info: ProjectInfo) extends ParentProject(info) with posterous.Publish
 {
   val databinder_repo = "Databinder Repository" at "http://databinder.net/repo"
   lazy val core_scala = project("core-scala", "Spde Core", new SpdeModule(_) {
@@ -16,6 +16,7 @@ class SpdeProject(info: ProjectInfo) extends ParentProject(info)
   class SpdeModule(info: ProjectInfo) extends DefaultProject(info) {
     override def mainResources = super.mainResources +++ license
   }
+  override def extraTags = "dispatch" :: super.extraTags
   override def managedStyle = ManagedStyle.Maven
   lazy val publishTo = Resolver.file("Databinder Repository Path", new java.io.File("/var/dbwww/repo"))
 }

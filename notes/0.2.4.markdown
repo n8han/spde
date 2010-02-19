@@ -1,0 +1,3 @@
+Uses the new [dispatch-futures][1] module for  `spde.core.Futures`.
+
+[1]: http://implicit.ly/dispatch-070
