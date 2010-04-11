@@ -73,3 +73,35 @@ trait Futures extends dispatch.futures.AvailableFutures {
   def spde_future: dispatch.futures.Futures = dispatch.futures.DefaultFuture
   def future[T](result: => T) = spde_future.future(result)
 }
+
+trait FunctionPlotting { self: processing.core.PApplet =>
+  /** @return function that plots given function for all x values in view */
+  def points(minX: Float, maxX: Float) = {
+    val rangeX = maxX - minX
+    lazy val inputs = (0 to width) map { px =>
+      (px, minX + rangeX * px / width)
+    }
+    { f: (Float => Float) => for ( (px, x) <- inputs ) yield (px, f(x)) }
+  }
+  /** adjust y values to fill the view height */
+  def zoom(points: Seq[Tuple2[Int, Float]]) = {
+    val (minY, maxY) = ((points.head._2, points.head._2) /: points.tail) { 
+      case ((max, min), (px, y)) =>
+        (if (y > max) y else max, if (y < min) y else min)
+    }
+    val rangeY = maxY - minY
+    for ( (px, y) <- points ) yield (px, ((y - minY) / rangeY * height).toInt)
+  }
+
+  /** Plots each given point */
+  def dotplot(points: Seq[(Int, Int)]) {
+    for ( (x, y) <- points ) point(x, y)
+  }
+  /** Plots a line between each given point */
+  def lineplot(points: Seq[(Int, Int)]) {
+    noFill()
+    beginShape()
+    for ( (x, y) <- points ) vertex(x, y)
+    endShape()
+  }
+}
