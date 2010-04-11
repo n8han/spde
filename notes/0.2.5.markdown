@@ -1,0 +1,2 @@
+* Depends on Processing 1.1
+* Includes `FunctionPlotting` trait to plot 2d functions
