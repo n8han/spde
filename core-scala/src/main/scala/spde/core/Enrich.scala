@@ -81,27 +81,18 @@ trait FunctionPlotting { self: processing.core.PApplet =>
     lazy val inputs = (0 to width) map { px =>
       (px, minX + rangeX * px / width)
     }
-    { f: (Float => Float) => for ( (px, x) <- inputs ) yield (px, f(x)) }
-  }
-  /** adjust y values to fill the view height */
-  def zoom(points: Seq[Tuple2[Int, Float]]) = {
-    val (minY, maxY) = ((points.head._2, points.head._2) /: points.tail) { 
-      case ((max, min), (px, y)) =>
-        (if (y > max) y else max, if (y < min) y else min)
-    }
-    val rangeY = maxY - minY
-    for ( (px, y) <- points ) yield (px, ((y - minY) / rangeY * height).toInt)
+    { f: (Float => Float) => for ( (px, x) <- inputs ) yield (px.toFloat, f(x)) }
   }
 
   /** Plots each given point */
-  def dotplot(points: Seq[(Int, Int)]) {
-    for ( (x, y) <- points ) point(x, y)
+  def dotplot(points: Seq[(Float, Float)]) {
+    for ( (x, y) <- points ) point(x, height/2 - y)
   }
   /** Plots a line between each given point */
-  def lineplot(points: Seq[(Int, Int)]) {
+  def lineplot(points: Seq[(Float, Float)]) {
     noFill()
     beginShape()
-    for ( (x, y) <- points ) vertex(x, y)
+    for ( (x, y) <- points ) vertex(x, height/2 - y)
     endShape()
   }
 }
