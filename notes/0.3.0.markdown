@@ -1,0 +1,4 @@
+* Depends on [Processing 1.1][rev]
+* Includes `FunctionPlotting` trait to plot 2d functions
+
+[rev]: http://processing.org/download/revisions.txt

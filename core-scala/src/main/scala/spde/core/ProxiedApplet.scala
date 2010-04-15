@@ -8,7 +8,8 @@ import processing.core.PApplet;
  * a particular method, because the proxy is not initialized until the applet setup
  * method is called.
  */
-abstract class ProxiedApplet extends PApplet {
+abstract class ProxiedApplet extends PApplet 
+    with Randoms with Maths with Timeout with Colors with Futures with FunctionPlotting {
   javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName())
   
   val px: DrawProxy
@@ -57,8 +58,7 @@ abstract class ProxiedApplet extends PApplet {
 }
 abstract class DrawProxy(
   /** A reference for the DrawPoxy to the containing ProxiedApplet instance */
-  val applet: ProxiedApplet
-) extends Randoms with Maths with Timeout with Colors with Futures {
+  val applet: ProxiedApplet) {
   
   /** For setup that can't be in a constructor, like native code on Apple's JRE apparently. */
   def setup() { }

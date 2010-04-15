@@ -6,8 +6,8 @@ class SpdeProject(info: ProjectInfo) extends ParentProject(info) with posterous.
 {
   val databinder_repo = "Databinder Repository" at "http://databinder.net/repo"
   lazy val core_scala = project("core-scala", "Spde Core", new SpdeModule(_) {
-    val core = "org.processing" % "core" % "1.0.9"
-    val dispatch = "net.databinder" %% "dispatch-futures" % "0.7.0"
+    val core = "org.processing" % "core" % "1.1"
+    val dispatch = "net.databinder" %% "dispatch-futures" % "0.7.3"
   })
   lazy val spde_video = project("spde-video", "Spde Video", new SpdeModule(_) with GSVideoProject, 
     core_scala)
