@@ -5,7 +5,7 @@ import spde._
 class SpdeProject(info: ProjectInfo) extends ParentProject(info) with posterous.Publish
 {
   val databinder_repo = "Databinder Repository" at "http://databinder.net/repo"
-  lazy val core_scala = project("core-scala", "Spde Core", new SpdeModule(_) {
+  lazy val core_scala = project("core-scala", "Spde Core", new SpdeModule(_) with sxr.Publish {
     val core = "org.processing" % "core" % "1.1"
     val dispatch = "net.databinder" %% "dispatch-futures" % "0.7.3"
   })
