@@ -1,0 +1,1 @@
+* spde-video now depends on gsvideo 0.7, gstreamer-java 1.7
