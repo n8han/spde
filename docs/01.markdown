@@ -1,0 +1,58 @@
+Download
+--------
+
+Spde works in conjunction with [Simple Build Tool][sbt], a platform
+for building, running, and packaging Scala applications. You can skip
+installing sbt, for now, by downloading a Spde 'graft':
+
+* [**Spde Graft $v$**](http://technically.us/spde-graft/graft_2.8.0-$v$-setup.jar)
+
+This runnable jar will produce a simple project containing everything you need to start coding. Most systems will run the jar on a  double-click, but if that doesn't seem to work a command line will give better feedback:
+
+    java -jar graft_2.8.0-$v$-setup.jar
+
+It can take a minute. When the project is ready, its sample sketch will appear and play (yay). Inside the project directory should be a `sbt` or `sbt.bat` script, depending on your platform. Run this to enter sbt's [interactive mode][inter], where the `run` and `applet` actions should provide useful results. To make changes, open `sketch.spde` in any text editor.
+
+[inter]: http://code.google.com/p/simple-build-tool/wiki/RunningSbt
+
+<span id="source-only">At some point</span> you should [setup sbt][ss] to run Spde and other Scala projects independently. Then, you can base new projects off the **source-only Graft**, available in [tar.bz2][graft.tar.bz2] or [zip][graft.zip]. To fetch, compile, and run in one shot:
+
+[graft.tar.bz2]: http://technically.us/git?p=graft.git;a=snapshot;h=$v$;sf=tbz2
+[graft.zip]: http://technically.us/git?p=graft.git;a=snapshot;h=$v$;sf=zip
+
+    curl "http://technically.us/git?p=graft.git;a=snapshot;h=$v$;sf=tbz2" \
+      | tar -xvj
+    cd graft
+    sbt update run
+
+* **Spde Examples $ex_v$** : [tar.bz2][tar.bz2] or [zip][zip]
+
+The examples are an open-ended, group project. If you want to contribute new sketches or improve existing ones, [clone spde-examples on github][spde-examples] and go to work!
+
+[spde-examples]: http://github.com/n8han/spde-examples/tree/master#readme
+
+[tar.bz2]: http://technically.us/git?p=spde-examples.git;a=snapshot;h=$ex_v$;sf=tbz2
+[zip]: http://technically.us/git?p=spde-examples.git;a=snapshot;h=$ex_v$;sf=zip
+
+[sbt]: http://code.google.com/p/simple-build-tool/
+[ss]: http://code.google.com/p/simple-build-tool/wiki/Setup
+
+Spde Classic
+------------
+
+Spde was originally developed to compile and run inside a fork of the
+Processing Development Environment. The final (probably) release of
+this forked environment is $version$, available in two distributions
+by BitTorrent or HTTP.
+
+* Windows and Linux : [Direct download][gen-http] or [torrent][gen-tor]  
+
+* Macintosh : [Direct download][mac-http]  or [torrent][mac-tor]  
+
+[gen-tor]: http://technically.us/torrents/spde-app-gen-$version$.tgz.torrent
+[gen-http]: http://spde.mirror.technically.us/spde-app-gen-$version$.tgz
+
+[mac-tor]: http://technically.us/torrents/spde-app-mac-$version$.tgz.torrent
+[mac-http]: http://spde.mirror.technically.us/spde-app-mac-$version$.tgz
+
+*Thanks to Christian Langreiter for the Spde mirror.*

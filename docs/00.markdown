@@ -1,0 +1,33 @@
+Spde
+====
+
+**Spde** is an offshoot of the [Processing][Processing] environment to
+support sketches written in [Scala][scala], a powerfully
+object-oriented and functional language.
+
+In contrast to the [PDE][PDE], Spde is a *deconstructed toolkit*. For
+starters that means you bring your own editor and Spde will compile
+and run a sketch whenever you save it --- that's one option. The
+entire process is controlled by Scala code you can use or
+override. This structure should make Spde easy to extend and
+customize. But who knows, for now it is just a scrappy little thing
+with big ideas.
+
+[PDE]: http://processing.org/reference/environment/
+[scala]: http://www.scala-lang.org/
+[Processing]: http://processing.org/
+
+Because Scala runs on the Java Virtual Machine and can interface
+directly with Java code, Spde is able to work with unmodified
+Processing libraries. Its sketches will look similar to those in the
+p5 dialect of Java if written in an imperative style, while an embrace
+of immutability and other functional concepts will lead to entirely
+different sketches. Please experiment.
+
+Like Processing, Spde is free software under the LGPL. The full
+sources to its Processing [extension library][lib] and
+[sketch-builder][plugin] are on github.
+
+[spde]: http://technically.us/git?p=spde.git;a=summary
+[lib]: http://github.com/n8han/spde
+[plugin]: http://github.com/n8han/spde-sbt
