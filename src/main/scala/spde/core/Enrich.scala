@@ -54,7 +54,7 @@ trait Maths {
     def *^ (exp: Int) = 
       if (exp > 0) pow(exp, num)
       else if (exp == 0) 1
-      else error("^^ for Int returns Int; negative exponents are not allowed")
+      else sys.error("^^ for Int returns Int; negative exponents are not allowed")
   }
 }
 
